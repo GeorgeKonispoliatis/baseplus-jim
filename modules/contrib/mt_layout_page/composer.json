@@ -1,0 +1,14 @@
+{
+    "name": "morethanthemes/mt_layout_page",
+    "description": "Prepares the mt_layout_page content type.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Stavros Kounis",
+            "email": "skounis@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

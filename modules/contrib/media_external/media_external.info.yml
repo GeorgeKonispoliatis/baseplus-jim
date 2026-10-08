@@ -1,0 +1,15 @@
+name: Media External
+description: Allows external media to be imported as local media items.
+
+type: module
+core_version_requirement: ^9 || ^10 || ^11
+
+dependencies:
+  - drupal:media
+  - drupal:media_library
+  - imagecache_external:imagecache_external
+
+# Information added by Drupal.org packaging script on 2026-08-21
+version: '1.0.0-beta3'
+project: 'media_external'
+datestamp: 1787317100

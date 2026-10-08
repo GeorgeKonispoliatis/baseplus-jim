@@ -1,0 +1,13 @@
+media.source.external_media:
+  type: mapping
+  label: 'External media source configuration'
+  mapping:
+    source_field:
+      type: string
+      label: 'Source field'
+    provider:
+      type: string
+      label: 'Provider'
+    thumbnails_directory:
+      type: string
+      label: 'Thumbnails directory'

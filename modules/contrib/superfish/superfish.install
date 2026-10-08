@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Superfish module.
+ */
+
+use Drupal\Core\Hook\Attribute\LegacyRequirementsHook;
+use Drupal\superfish\Hook\LibraryHooks;
+use Drupal\superfish\Library\SuperfishLibrary;
+
+/**
+ * Implements hook_install().
+ */
+function superfish_install() {
+  $messenger = \Drupal::messenger();
+  if (SuperfishLibrary::isInstalled()) {
+    $messenger->addMessage(t('In order to use Superfish, go to the <a href="@block">Block layout</a> page and use any of the "Place block" buttons to create a Superfish block.', ['@block' => 'structure/block']));
+  }
+  else {
+    $messenger->addWarning(t('Superfish library is missing. Please refer to the <a href="@documentation">plugin documentation</a> for how you can fix this issue; Once done, go to the <a href="@block">Block layout</a> page and use any of the "Place block" buttons to create a Superfish block.', [
+      '@documentation' => 'https://www.drupal.org/node/1125896',
+      '@block' => 'structure/block',
+    ]));
+  }
+  $messenger->addMessage(t('If there was no Superfish block in the "Place block" form, go to the <a href="@performance">Performance</a> page and clear the cache once.', ['@performance' => 'config/development/performance']));
+}
+
+/**
+ * Implements hook_requirements().
+ */
+#[LegacyRequirementsHook]
+function superfish_requirements($phase) {
+  if ($phase !== 'runtime') {
+    return [];
+  }
+
+  return \Drupal::service(LibraryHooks::class)->runtimeRequirements();
+}

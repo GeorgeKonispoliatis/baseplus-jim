@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Default theme implementation of the Superfish menus.
+ *
+ * Available variables:
+ * - id: Unique menu identifier.
+ * - menu_classes: Menu classes.
+ * - menu_items: Menu tree.
+ *
+ * @see template_preprocess_superfish()
+ *
+ * @ingroup themeable
+ */
+#}
+<nav aria-label="{{ element['#menu_label'] }}">
+  <ul id="{{ id }}" class="{{ menu_classes }}" role="menubar" aria-label="{{ 'Menu'|t }}">
+    {{ menu_items }}
+  </ul>
+</nav>

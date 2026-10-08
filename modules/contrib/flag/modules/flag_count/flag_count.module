@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Flag count module.
+ */
+
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\flag_count\Hook\FlagCountHooks;
+
+/**
+ * Implements hook_theme().
+ */
+#[LegacyHook]
+function flag_count_theme() {
+  return \Drupal::service(FlagCountHooks::class)->theme();
+}

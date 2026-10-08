@@ -1,0 +1,6 @@
+media_external.search:
+  path: '/media-library/external/search/{provider_name}/{keyword}'
+  defaults:
+    _controller: 'media_external.search:search'
+  requirements:
+    _custom_access: 'media_library.ui_builder:checkAccess'

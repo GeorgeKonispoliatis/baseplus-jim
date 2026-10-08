@@ -1,0 +1,21 @@
+name: 'Layout Page'
+type: module
+description: 'Layout Page content type'
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+package: 'MT Configuration'
+dependencies:
+  - layout_builder
+  - layout_builder_restrictions
+  - layout_discovery
+  - menu_ui
+  - node
+  - path
+  - user
+config_devel:
+  - core.entity_form_display.node.mt_layout_page.default
+  - core.entity_view_display.node.mt_layout_page.default
+  - core.entity_view_display.node.mt_layout_page.teaser
+  - field.field.node.mt_layout_page.layout_builder__layout
+  - field.storage.node.layout_builder__layout
+  - node.type.mt_layout_page

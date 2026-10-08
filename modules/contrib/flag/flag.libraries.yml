@@ -1,0 +1,25 @@
+flag.admin:
+  js:
+    js/flag-admin.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+# Normal action link library.
+flag.link:
+  css:
+    theme:
+      css/flag-link.css: {}
+
+# Ajax action link library.
+flag.link_ajax:
+  js:
+    js/flag-action_link_flash.js: {}
+  css:
+    theme:
+      css/flag-link-ajax.css: {}
+  dependencies:
+    - core/drupal
+    - core/drupal.dialog.ajax
+    - core/drupal.ajax
+    - core/drupal.announce

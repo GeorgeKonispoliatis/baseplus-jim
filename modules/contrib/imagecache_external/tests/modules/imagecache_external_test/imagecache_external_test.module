@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Test module for Imagecache External.
+ */
+
+/**
+ * Implements hook_imagecache_external_destination_alter().
+ */
+function imagecache_external_test_imagecache_external_destination_alter(&$alter, $context) {
+  if (strpos($context['url'], 'wordmark') !== FALSE) {
+    $alter['directory'] = 'altered-directory';
+  }
+}
+
+/**
+ * Implements hook_imagecache_external_flush_filepath_alter().
+ */
+function imagecache_external_test_imagecache_external_flush_filepath_alter(array &$files_to_delete) {
+  $hash = \Drupal::state()->get('imagecache_external_optimized_file_hash');
+  if (!empty($hash)) {
+    foreach ($files_to_delete as $file_to_delete) {
+      if (str_contains($file_to_delete, $hash)) {
+        $files_to_delete[] = 'altered-will-be-optimized-file.png';
+      }
+    }
+  }
+}

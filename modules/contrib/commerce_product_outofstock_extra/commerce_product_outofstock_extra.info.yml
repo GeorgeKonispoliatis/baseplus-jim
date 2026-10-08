@@ -1,0 +1,6 @@
+name: Commerce Product out of stock extra
+type: module
+description: Out of stock functionality
+package: Mt Commerce
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10 || ^11

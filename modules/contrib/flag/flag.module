@@ -1,0 +1,174 @@
+<?php
+
+/**
+ * @file
+ * The Flag module.
+ */
+
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\flag\Hook\FlagHooks;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\flag\FlagInterface;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_help().
+ */
+#[LegacyHook]
+function flag_help($route_name, RouteMatchInterface $route_match) {
+  return \Drupal::service(FlagHooks::class)->help($route_name, $route_match);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+#[LegacyHook]
+function flag_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  return \Drupal::service(FlagHooks::class)->formAlter($form, $form_state, $form_id);
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+#[LegacyHook]
+function flag_entity_extra_field_info() {
+  return \Drupal::service(FlagHooks::class)->entityExtraFieldInfo();
+}
+
+/**
+ * Implements hook_theme().
+ */
+#[LegacyHook]
+function flag_theme() {
+  return \Drupal::service(FlagHooks::class)->theme();
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+#[LegacyHook]
+function flag_theme_suggestions_flag(array $variables) {
+  return \Drupal::service(FlagHooks::class)->themeSuggestionsFlag($variables);
+}
+
+/**
+ * Implements hook_node_links_alter().
+ */
+#[LegacyHook]
+function flag_node_links_alter(array &$links, EntityInterface $entity, array &$context) {
+  \Drupal::service(FlagHooks::class)->nodeLinksAlter($links, $entity, $context);
+}
+
+/**
+ * Implements hook_comment_links_alter().
+ */
+#[LegacyHook]
+function flag_comment_links_alter(array &$links, EntityInterface $entity, array &$context) {
+  \Drupal::service(FlagHooks::class)->commentLinksAlter($links, $entity, $context);
+}
+
+/**
+ * Implements hook_entity_view().
+ *
+ * Handles the 'show_in_links' and 'show_as_field' flag options.
+ */
+#[LegacyHook]
+function flag_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, ?string $view_mode = NULL) {
+  \Drupal::service(FlagHooks::class)->entityView($build, $entity, $display, $view_mode);
+}
+
+/**
+ * Implements hook_entity_build_defaults_alter().
+ */
+#[LegacyHook]
+function flag_entity_build_defaults_alter(array &$build, EntityInterface $entity, $view_mode = 'full', $langcode = NULL) {
+  return \Drupal::service(FlagHooks::class)->entityBuildDefaultsAlter($build, $entity, $view_mode, $langcode);
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ *
+ * Alters node contextual links placeholder id to contain flag metadata, so that
+ * contextual links cache considers flags granularity.
+ */
+#[LegacyHook]
+function flag_entity_view_alter(&$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  \Drupal::service(FlagHooks::class)->entityViewAlter($build, $entity, $display);
+}
+
+/**
+ * Implements hook_contextual_links_alter().
+ */
+#[LegacyHook]
+function flag_contextual_links_alter(array &$links, $group, array $route_parameters) {
+  \Drupal::service(FlagHooks::class)->contextualLinksAlter($links, $group, $route_parameters);
+}
+
+/**
+ * Implements hook_entity_predelete().
+ */
+#[LegacyHook]
+function flag_entity_predelete(EntityInterface $entity) {
+  \Drupal::service(FlagHooks::class)->entityPredelete($entity);
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+#[LegacyHook]
+function flag_user_cancel($edit, $account, $method) {
+  \Drupal::service(FlagHooks::class)->userCancel($edit, $account, $method);
+}
+
+/**
+ * Implements hook_user_predelete().
+ */
+#[LegacyHook]
+function flag_user_predelete(UserInterface $account) {
+  \Drupal::service(FlagHooks::class)->userPredelete($account);
+}
+
+/**
+ * Implements hook_entity_operation().
+ */
+#[LegacyHook]
+function flag_entity_operation(EntityInterface $entity) {
+  return \Drupal::service(FlagHooks::class)->entityOperation($entity);
+}
+
+/**
+ * Implements hook_hook_info().
+ *
+ * Flag alter hooks should be defined in a MODULE.flag.inc file.
+ */
+function flag_hook_info() {
+  $hooks = [];
+
+  $hooks['flag_type_info_alter'] = [
+    'group' => 'flag',
+  ];
+  $hooks['flag_link_type_info_alter'] = [
+    'group' => 'flag',
+  ];
+
+  return $hooks;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+#[LegacyHook]
+function flag_flag_insert(FlagInterface $flag) {
+  \Drupal::service(FlagHooks::class)->flagInsert($flag);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+#[LegacyHook]
+function flag_flag_delete(FlagInterface $flag) {
+  \Drupal::service(FlagHooks::class)->flagDelete($flag);
+}

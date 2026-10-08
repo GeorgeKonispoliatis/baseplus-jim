@@ -1,0 +1,168 @@
+<?php
+
+/**
+ * @file
+ * Contains onesignal.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+
+/**
+ * Implements hook_help().
+ */
+function onesignal_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the onesignal module.
+    case 'help.page.onesignal':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module provides integration with the free HTTP Web Push service from OneSignal  allowing visitors to subscribe for notifications and site owners to send notifications to the subscribers.') . '</p>';
+      $output .= '<h3>' . t('Prerequisites') . '</h3>';
+      $output .= '<p>' . t('You must create an account at @url to configure your Web app, obtain an App ID and download some files.', [
+        '@url' => Link::fromTextAndUrl('OneSignal.com', Url::fromUri('https://onesignal.com', []))
+          ->toString(),
+      ]) . '</p>';
+      $output .= '<p>' . t('Once you have created your account at OneSignal.com:') . '</p>';
+      $output .= '<ol>';
+      $output .= '<li>' . t('Add a new app') . '</li>';
+      $output .= '<li>' . t('On the &quot;Select one platform&quot; screen, chose &quot;Web Push&quot;') . '</li>';
+      $output .= '<li>' . t('On the &quot;Chose Integration&quot; screen, chose &quot;Custom Code&quot;') . '</li>';
+      $output .= '<li>' . t('Enter your site name, URL and Icon URL.') . '</li>';
+      $output .= '<li>' . t('Click &quot;Save&quot;') . '</li>';
+      $output .= '</ol>';
+      $output .= '<p>' . t('At this point you will be given a link to download the <strong>OneSignal SDK</strong> files. Download the Zip file, extract the content, and upload the following three files to the root of your website:') . '</p>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('OneSignalSDKUpdaterWorker.js') . '</li>';
+      $output .= '<li>' . t('OneSignalSDKWorker.js') . '</li>';
+      $output .= '</ul>';
+      $output .= '<p>' . t("OneSignal will give you also a code to add to the <strong><em>&lt;head&gt;</em></strong> of your site; however YOU DON'T NEED THE FULL CODE, all you need from this code is your <em><strong>appId</strong></em>.") . '</p>';
+      $output .= '<h3>' . t('Configuration') . '</h3>';
+      $output .= '<p>' . t('This module defines the permission <em>Administer OneSignal settings</em>. Users should be granted this permission before they can make changes to the configurations of this module.') . '</p>';
+      $output .= '<p>' . t('To configure this module, go to: <em><strong>Configuration &gt; Web services &gt; OneSignal</strong></em>') . '</p>';
+      $output .= '<p>' . t('Provide the required parameters as instructed on that page.') . '</p>';
+      $output .= '<h3>' . t('Bugs/Features/Patches') . '</h3>';
+      $output .= '<p>' . t('If you want to report bugs, feature requests, or submit a patch, please do so at the project page on the Drupal web site.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function onesignal_page_attachments(&$attachments) {
+  /** @var \Drupal\onesignal\Config\ConfigManager $config_manager */
+  $config_manager = \Drupal::service('onesignal.config_manager');
+  if (!$config_manager->getAppId()) {
+    return;
+  }
+
+  // If admin route, let's stop here.
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  }
+
+  // Check to see if user has proper permission.
+  if (!\Drupal::currentUser()->hasPermission('access onesignal')) {
+    return;
+  }
+
+  // Attach the external library defined in the onesignal.libraries.yml file.
+  $attachments['#attached']['library'][] = 'onesignal/global-scripts';
+
+  /*
+   * Here we build the OneSignal JS code using the variables set by the admin.
+   * We check if variables are configured before setting them up.
+   * The objective is to reproduce OnSignal's code, more or less like this:
+   *
+   * @code
+   * var OneSignal = window.OneSignal || [];
+   * OneSignal.push(function() {
+   *   OneSignal.init({
+   *     appId: "111111111111111111111111",
+   *     autoRegister: false,
+   *     notifyButton: {
+   *       enable: true,
+   *     },
+   *   });
+   * });
+   * @endcode
+   */
+  $config = [];
+  $config['appId'] = $config_manager->getAppId();
+  if (!empty($config_manager->getSafariWebId())) {
+    $config['safari_web_id'] = $config_manager->getSafariWebId();
+  }
+  if (!empty($config_manager->getAutoRegister())) {
+    $config['autoRegister'] = $config_manager->getAutoRegister();
+  }
+  if (!empty($config_manager->getLocalhostSecure())) {
+    $config['allowLocalhostAsSecureOrigin'] = TRUE;
+  }
+  if (!empty($config_manager->getNotifyButton())) {
+    $config['notifyButton'] = [
+      'enable' => $config_manager->getNotifyButton(),
+    ];
+  }
+  // Print welcomeNotification block.
+  if (!empty($config_manager->getWelcomeTitle()) || !empty($config_manager->getWelcomeMessage())) {
+    $config['welcomeNotification'] = [];
+    if (!empty($config_manager->getWelcomeTitle())) {
+      $config['welcomeNotification']['title'] = $config_manager->getWelcomeTitle();
+    }
+    if (!empty($config_manager->getWelcomeMessage())) {
+      $config['welcomeNotification']['message'] = $config_manager->getWelcomeMessage();
+    }
+  }
+
+  // Print promptOptions block.
+  if (!empty($config_manager->getActionMessage()) || !empty($config_manager->getAcceptButtonText()) || !empty($config_manager->getCancelButtonText())) {
+    $config['promptOptions'] = [];
+    if (!empty($config_manager->getActionMessage())) {
+      $config['promptOptions']['actionMessage'] = $config_manager->getActionMessage();
+    }
+    if (!empty($config_manager->getAcceptButtonText())) {
+      $config['promptOptions']['acceptButtonText'] = $config_manager->getAcceptButtonText();
+    }
+    if (!empty($config_manager->getCancelButtonText())) {
+      $config['promptOptions']['cancelButtonText'] = $config_manager->getCancelButtonText();
+    }
+  }
+
+  // Grab any extra js to be included.
+  $extra_js = \Drupal::service('module_handler')->invokeAll('onesignal_extra_js');
+
+  // Build up inline js.
+  $inline_js = [
+    '#type' => 'inline_template',
+    '#template' => "
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          {{ extra_js|raw }}
+          OneSignal.init({{ onesignal_json|raw }});
+        });
+      ",
+    '#context' => [
+      'onesignal_json' => json_encode($config),
+      'extra_js' => implode(PHP_EOL, $extra_js),
+    ],
+  ];
+  $inline_js = \Drupal::service('renderer')->renderPlain($inline_js);
+
+  // Attach inline js.
+  $attachments['#attached']['html_head'][] = [
+    [
+      // Add a <script> tag.
+      '#tag' => 'script',
+      // Add the JavaScript code to the <script> tag.
+      // '#value' => Markup::create($onesignal_javascript_header),
+      '#value' => $inline_js,
+      // Set a weight so this code appears after meta tags, etc.
+      '#weight' => -1,
+    ],
+    // A key, to recognize this HTML <HEAD> element when altering.
+    'onesignal-js',
+  ];
+}

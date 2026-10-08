@@ -1,0 +1,16 @@
+/*
+ * Provides a reset of Gin theme changes that affect tables inside
+ * .paragraphs-tabs-wrapper, and that change the display of many <table>
+ * HTML elements to flex.
+ */
+.field--widget-paragraphs-table-widget .paragraphs-tabs-wrapper .field-multiple-table > thead,
+.field--widget-paragraphs-table-widget .paragraphs-tabs-wrapper .field-multiple-table > thead > tr,
+.field--widget-paragraphs-table-widget .paragraphs-tabs-wrapper .field-multiple-table > tbody,
+.field--widget-paragraphs-table-widget .paragraphs-tabs-wrapper .field-multiple-table .draggable,
+.field--widget-paragraphs-table-widget .paragraphs-tabs-wrapper .field-multiple-table .draggable td {
+  display: revert;
+}
+
+.field--widget-paragraphs-table-widget .gin-table-scroll-wrapper {
+  overflow-x: auto !important;
+}

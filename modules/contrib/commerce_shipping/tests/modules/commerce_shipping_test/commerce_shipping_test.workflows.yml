@@ -1,0 +1,14 @@
+shipment_missing_transitions:
+  id: shipment_missing_transitions
+  group: commerce_shipment
+  label: 'Missing transitions'
+  states:
+    draft:
+      label: 'Draft'
+    shipped:
+      label: 'Shipped'
+  transitions:
+    ship:
+      label: 'Send shipment'
+      from: [draft]
+      to: shipped

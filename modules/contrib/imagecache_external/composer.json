@@ -1,0 +1,10 @@
+{
+    "name": "drupal/imagecache_external",
+    "description": "Allows you to fetch external images and use image styles on them.",
+    "type": "drupal-module",
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "require": {
+      "enshrined/svg-sanitize": "~0.22"
+    }
+}

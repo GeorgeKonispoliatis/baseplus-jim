@@ -1,0 +1,10 @@
+{
+    "name": "drupal/media_external",
+    "type": "drupal-module",
+    "description": "Allows external media items to be added as media items.",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "require": {
+        "drupal/imagecache_external": "^3.0"
+    }
+}

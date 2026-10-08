@@ -1,0 +1,107 @@
+datatables_core:
+  version: 2.3.7
+  js:
+    //cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js: { type: external, defer: true, minified: true, crossorigin: anonymous, integrity: "sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI", weight: -1 }
+    //cdn.datatables.net/2.3.7/js/dataTables.min.js: { type: external, minified: true }
+    //cdn.datatables.net/responsive/3.0.4/js/dataTables.responsive.js: { type: external, minified: true }
+    //cdn.datatables.net/responsive/3.0.4/js/responsive.dataTables.js: { type: external, minified: true }
+    //cdn.datatables.net/2.3.7/js/dataTables.bootstrap5.min.js: { type: external, minified: true }
+    //cdn.datatables.net/buttons/3.2.3/js/dataTables.buttons.js: { type: external, minified: true }
+    //cdn.datatables.net/buttons/3.2.3/js/buttons.dataTables.js: { type: external, minified: true }
+    //cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js: { type: external, minified: true }
+    //cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/pdfmake.min.js: { type: external, minified: true }
+    //cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/vfs_fonts.js: { type: external, minified: true }
+    //cdn.datatables.net/buttons/3.2.3/js/buttons.html5.min.js: { type: external, minified: true }
+    //cdn.datatables.net/buttons/3.2.3/js/buttons.print.min.js: { type: external, minified: true }
+    //cdn.datatables.net/buttons/3.2.3/js/buttons.colVis.min.js: { type: external, minified: true }
+  css:
+    component:
+      //cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css: { type: external, minified: true, attributes: { crossorigin: anonymous, integrity: "sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"}}
+      //cdn.datatables.net/2.3.7/css/dataTables.bootstrap5.css: { type: external, minified: true }
+      //cdn.datatables.net/buttons/3.2.3/css/buttons.bootstrap5.css: { type: external, minified: true }
+  dependencies:
+    - core/jquery
+
+datatables:
+  version: 1.x
+  js:
+    js/datatables.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+    - core/drupalSettings
+
+bootstrapTable:
+  version: 1.27.0
+  js:
+    js/jquery-deprecated-function.js: { }
+    //cdn.jsdelivr.net/npm/tableexport.jquery.plugin/tableExport.min.js: { type: external, minified: true, crossorigin: anonymous }
+    //cdn.jsdelivr.net/npm/bootstrap-table/dist/bootstrap-table.min.js: { type: external, minified: true, crossorigin: anonymous }
+    //cdn.jsdelivr.net/npm/tableexport.jquery.plugin/libs/jsPDF/jspdf.umd.min.js: { type: external, minified: true, crossorigin: anonymous }
+    //cdn.jsdelivr.net/npm/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js: { type: external, minified: true, crossorigin: anonymous }
+    //cdn.jsdelivr.net/npm/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js: { type: external, minified: true }
+    //cdn.jsdelivr.net/npm/bootstrap-table/dist/extensions/copy-rows/bootstrap-table-copy-rows.min.js: { type: external, minified: true }
+    //cdn.jsdelivr.net/npm/bootstrap-table/dist/extensions/print/bootstrap-table-print.min.js: { type: external, minified: true }
+    //cdn.jsdelivr.net/npm/bootstrap-table/dist/extensions/cookie/bootstrap-table-cookie.min.js: { type: external, minified: true }
+    //cdn.jsdelivr.net/npm/bootstrap-table/dist/bootstrap-table-locale-all.min.js: { type: external, minified: true }
+    //cdn.jsdelivr.net/npm/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js: { type: external, minified: true }
+    js/bootstrap-tables.js: { }
+  css:
+    component:
+      //cdn.jsdelivr.net/npm/bootstrap-table/dist/bootstrap-table.min.css: { type: external, minified: true }
+
+googleCharts:
+  js:
+    //www.gstatic.com/charts/loader.js: { type: external }
+    js/googlecharts.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+    - core/drupalSettings
+
+paste-clipboard:
+  js:
+    js/paste-clipboard.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+    - core/drupalSettings
+
+search-reference:
+  js:
+    js/search-reference.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+    - core/drupalSettings
+
+paragraphsTable:
+  js:
+    js/paragraphsTable.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+    - core/drupalSettings
+
+tableMobile:
+  css:
+    component:
+      css/tableMobile.css: {}
+
+shortcut:
+  js:
+    js/shortcut.js: { }
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+
+ginSupport:
+  css:
+    base:
+      css/gin.css: {}

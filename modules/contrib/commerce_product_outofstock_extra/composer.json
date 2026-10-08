@@ -1,0 +1,14 @@
+{
+    "name": "morethanthemes/commerce_product_outofstock_extra",
+    "description": "UX fixes for the out-of-stock functionality of Drupal Commerce.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Stavros Kounis",
+            "email": "skounis@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

@@ -1,0 +1,20 @@
+services:
+  # The service that provides the external media items.
+  media_external.search:
+    class: Drupal\media_external\ExternalMediaSearch
+    arguments: ['@plugin.manager.media_external_provider', '@pager.manager', '@media_external.cache.wrapper']
+  # Add a plugin manager for external media provider plugins.
+  plugin.manager.media_external_provider:
+    class: Drupal\media_external\Plugin\ExternalMediaProviderManager
+    parent: default_plugin_manager
+  # Add a cache wrapper service to cache API calls of plugins.
+  media_external.cache.wrapper:
+    class: Drupal\media_external\ExternalMediaCacheWrapper
+    arguments: ['@cache.media_external', '@datetime.time']
+  # Add a custom cache bin for external media API results.
+  cache.media_external:
+    class: Drupal\Core\Cache\CacheBackendInterface
+    tags:
+      - { name: cache.bin }
+    factory: cache_factory:get
+    arguments: [ media_external ]

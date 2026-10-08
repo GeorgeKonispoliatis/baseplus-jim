@@ -1,0 +1,6 @@
+services:
+  commerce_product_outofstock_extra.event_subscriber:
+    class: Drupal\commerce_product_outofstock_extra\EventSubscriber\CommerceProductOutofstockExtraSubscriber
+    arguments: ['@messenger']
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,16 @@
+--- src/Plugin/facets/facet_source/SearchApiDisplay.php
++++ src/Plugin/facets/facet_source/SearchApiDisplay.php
+@@ -136,10 +136,10 @@ class SearchApiDisplay extends FacetSourcePluginBase implements SearchApiFacetSo
+    * {@inheritdoc}
+    */
+   public function getPath() {
+-    if ($this->isRenderedInCurrentRequest()) {
+-      return \Drupal::service('path.current')->getPath();
++    if ($this->getDisplay()->getPath()) {
++      return $this->getDisplay()->getPath();
+     }
+-    return $this->getDisplay()->getPath();
++    return \Drupal::service('path.current')->getPath();
+   }
+ 
+   /**
