@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Base+'s theme implementation to display internal banner slider of commerce product page.
+ */
+#}
+
+{% extends "page.html.twig" %}
+{% block internal_sticky_header %}
+{{ attach_library('baseplus/mt-sticky-element-header') }}
+<div class="internal-sticky-header mt-sticky-element-header region--tint-background">
+  <div class="container">
+    <div class="row d-flex align-items-center">
+      <div class="col">
+        <h2 class="page-title my-2">
+          {{ page['#title'] }}
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

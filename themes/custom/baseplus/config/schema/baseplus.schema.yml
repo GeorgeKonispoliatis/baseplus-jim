@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Base+ theme.
+
+baseplus.settings:
+  type: theme_settings
+  label: 'Base+ settings'

@@ -1,0 +1,39 @@
+/**
+ * @file
+ * Visual styles for images.
+ */
+.field--name-field-mt-image-gallery-image .image-preview {
+  overflow: hidden;
+  position: relative;
+}
+.field--name-field-mt-image-gallery-image .image-caption {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  width: 330px;
+}
+.field--name-field-mt-image-gallery-image .image-caption h4 {
+  color: #ffffff;
+  padding: 15px;
+  margin: 0;
+  margin-bottom: 1px;
+}
+
+/*image listing*/
+.field--name-field-mt-image-gallery-image .image-listing-items {
+  overflow: hidden;
+}
+.field--name-field-mt-image-gallery-image .image-listing-item {
+  float: left;
+  padding: 0;
+  margin: 2.66% 2.66% 0 0;
+  max-width: 17.866666666%;
+}
+.field--name-field-mt-image-gallery-image .image-listing-items .image-listing-item:nth-child(5n) {
+  margin-right: 0px;
+}
+@media (max-width:767px) {
+  .field--name-field-mt-image-gallery-image .images-container {
+    margin-bottom: 10px;
+  }
+}

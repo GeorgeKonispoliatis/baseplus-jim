@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: mt_image_gallery
+label: 'Image Gallery'
+effects:
+  bee54bcb-ee65-45d6-af48-5fae6479a336:
+    uuid: bee54bcb-ee65-45d6-af48-5fae6479a336
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1350
+      height: 730
+      anchor: center-center

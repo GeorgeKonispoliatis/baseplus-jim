@@ -1,0 +1,14 @@
+<?php
+
+function mt_image_gallery_theme() {
+  return array(
+    'field__block_content__field_mt_image_gallery_image' => [
+        'template' => 'field--block-content--field_mt_image_gallery_image',
+        'base hook' => 'field',
+    ],
+    'image_formatter__block_content__field_mt_image_gallery_image' => [
+        'template' => 'image-formatter--block-content--field_mt_image_gallery_image',
+        'base hook' => 'image',
+    ]
+  );
+}

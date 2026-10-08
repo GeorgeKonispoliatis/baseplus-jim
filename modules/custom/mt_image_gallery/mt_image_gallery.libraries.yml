@@ -1,0 +1,24 @@
+magnific-popup:
+  version: 1.1.0
+  css:
+    component:
+      js/magnific-popup/magnific-popup.css: { weight: 0 }
+  js:
+    js/magnific-popup/jquery.magnific-popup.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+
+magnific-popup-field-mt-image-gallery-image-init:
+  version: VERSION
+  js:
+    js/init/magnific-popup-field-mt-image-gallery-image-init.js: {}
+  dependencies:
+    - mt_image_gallery/magnific-popup
+
+image-gallery:
+  version: VERSION
+  css:
+    component:
+      css/image-gallery.css: {}
