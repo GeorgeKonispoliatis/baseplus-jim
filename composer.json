@@ -52,7 +52,6 @@
         "drupal/media_external": "^1.0@beta",
         "drupal/metatag": "^2.0",
         "drupal/metatag_ai": "^1.0",
-        "drupal/onesignal": "^3.0",
         "drupal/openai": "^1.0@beta",
         "drupal/paragraphs": "^1.8",
         "drupal/paragraphs_table": "^2.0",
@@ -61,8 +60,10 @@
         "drupal/search_api": "^1.19",
         "drupal/sitemap": "^2.4",
         "drupal/stable": "^2.0",
+        "drupal/statistics": "^1.0",
         "drupal/styleguide": "^2.0",
         "drupal/superfish": "^1.6",
+        "drupal/upgrade_status": "^4.3",
         "drupal/video_embed_field": "^3.1",
         "drupal/views_base_url": "^2.1@beta",
         "drupal/views_infinite_scroll": "^2.0",
@@ -125,17 +126,17 @@
         },
         "patches": {
             "enable-patching" : true,
-            "drupal/facets": {
-                "ViewsDisplayBase::isRenderedInCurrentRequest() doesn't let the facet link to reset to original URL": "https://www.drupal.org/files/issues/2022-01-18/3259123-search-facet-reset-link.patch"
-			},
             "drupal/paragraphs": {
-                "Paragraphs do not render: access check for view fail when using layout builder": "https://www.drupal.org/files/issues/2020-07-08/access-controll-issue-3090200-22.patch"
+                "Paragraphs do not render: access check for view fail when using layout builder": "https://www.drupal.org/files/issues/2026-07-06/paragraphs-parent-access-block-content-skip-3090200-97.patch"
             },
             "drupal/openai": {
                 "New, long keys can't be stored properly": "https://www.drupal.org/files/issues/2024-08-02/3465426.patch"
             },
-            "drupal/metatag_ai": {
-                "Support new long OpenAI keys": "https://www.drupal.org/files/issues/2024-10-16/3481140-01.patch"
+            "drupal/flag_anon": {
+                "PHP Fatal error: Declaration of Drupal": "https://www.drupal.org/files/issues/2025-01-29/flag_anon-fatal-php-error-3097962-9.patch"
+            },
+            "drupal/flag": {
+                "Allow AjaxResponse to be altered": "https://www.drupal.org/files/issues/2026-09-11/allow-ajaxresponse-to-be-altered.patch"
             }
         },
         "drupal-core-project-message": {
