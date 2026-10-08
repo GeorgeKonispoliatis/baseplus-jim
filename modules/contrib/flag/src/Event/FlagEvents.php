@@ -25,4 +25,13 @@ final class FlagEvents {
    */
   const ENTITY_UNFLAGGED = 'flag.entity_unflagged';
 
+  /**
+   * Event ID for altering the response of a flag action.
+   *
+   * @Event
+   *
+   * @var string
+   */
+  const RESPONSE = 'flag.response';
+
 }

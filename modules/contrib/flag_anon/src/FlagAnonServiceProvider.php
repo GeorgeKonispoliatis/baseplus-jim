@@ -17,8 +17,12 @@ class FlagAnonServiceProvider extends ServiceProviderBase {
   public function alter(ContainerBuilder $container) {
     $definition = $container->getDefinition('flag.link_builder');
     $definition->setClass(FlagAnonLinkBuilder::class)
-      ->addArgument(new Reference('current_user'))
-      ->addArgument(new Reference('module_handler'));
+      ->setArguments([
+      new Reference('entity_type.manager'),
+      new Reference('flag'),
+      new Reference('current_user'),
+      new Reference('module_handler'),
+      ]);
   }
 
 }

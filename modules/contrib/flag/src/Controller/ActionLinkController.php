@@ -9,9 +9,12 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\flag\Ajax\ActionLinkFlashCommand;
+use Drupal\flag\Event\FlagEvents;
+use Drupal\flag\Event\FlagResponseEvent;
 use Drupal\flag\FlagInterface;
 use Drupal\flag\FlagServiceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -25,6 +28,7 @@ class ActionLinkController implements ContainerInjectionInterface {
   public function __construct(
     protected FlagServiceInterface $flagService,
     protected RendererInterface $renderer,
+    protected EventDispatcherInterface $eventDispatcher,
   ) {
   }
 
@@ -34,7 +38,8 @@ class ActionLinkController implements ContainerInjectionInterface {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('flag'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $container->get('event_dispatcher')
     );
   }
 
@@ -142,7 +147,11 @@ class ActionLinkController implements ContainerInjectionInterface {
     $pulse = new ActionLinkFlashCommand($selector, $message);
     $response->addCommand($pulse);
 
-    return $response;
+    // Allow other modules to alter or replace the response.
+    $event = new FlagResponseEvent($flag, $entity, $response);
+    $this->eventDispatcher->dispatch($event, FlagEvents::RESPONSE);
+
+    return $event->getResponse();
   }
 
 }

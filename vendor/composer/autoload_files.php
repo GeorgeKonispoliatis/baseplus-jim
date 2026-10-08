@@ -27,9 +27,9 @@ return array(
     '38a4a83ee9437fa4c0c7a481bbf0d2a0' => $baseDir . '/core/includes/guzzle_file_cookie_jar_shim.php',
     '9d2b9fc6db0f153a0a149fefb182415e' => $vendorDir . '/symfony/polyfill-php84/bootstrap.php',
     '23c18046f52bef3eea034657bafda50f' => $vendorDir . '/symfony/polyfill-php81/bootstrap.php',
+    '9b38cf48e83f5d8f60375221cd213eee' => $vendorDir . '/phpstan/phpstan/bootstrap.php',
     'b067bc7112e384b61c701452d53a14a8' => $vendorDir . '/mtdowling/jmespath.php/src/JmesPath.php',
     '61ba3e92ef91a7a0f1cc260ebd9290e4' => $vendorDir . '/openai-php/client/src/OpenAI.php',
-    '0d59ee240a4cd96ddbb4ff164fccea4d' => $vendorDir . '/symfony/polyfill-php73/bootstrap.php',
     '8a9dc1de0ca7e01f3e08231539562f61' => $vendorDir . '/aws/aws-sdk-php/src/functions.php',
     '801c31d8ed748cfa537fa45402288c95' => $vendorDir . '/psy/psysh/src/functions.php',
 );

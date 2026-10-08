@@ -70,7 +70,7 @@ class FlagAnonLinkBuilder extends FlagLinkBuilder {
   /**
    * {@inheritdoc}
    */
-  public function build($entity_type_id, $entity_id, $flag_id) {
+  public function build($entity_type_id, $entity_id, $flag_id, $view_mode = NULL) {
     $flag = $this->flagService->getFlagById($flag_id);
 
     if ($flag->getThirdPartySetting('flag_anon', 'enabled', 0) && $this->currentUser->isAnonymous()) {
@@ -84,7 +84,12 @@ class FlagAnonLinkBuilder extends FlagLinkBuilder {
       }
     }
 
-    return parent::build($entity_type_id, $entity_id, $flag_id);
+    return parent::build(
+      $entity_type_id,
+      $entity_id,
+      $flag_id,
+      $view_mode ?: 'default'
+    );
   }
 
   /**
@@ -143,7 +148,8 @@ class FlagAnonLinkBuilder extends FlagLinkBuilder {
 
       case 'original':
         $selector = Html::cleanCssIdentifier('flag-anon-' . $flag->id() . '-' . $entity->id());
-        $build['#label'] = $flag->getShortText($action);
+        // Use render array for title to allow limited markup in the link text.
+        $build['#label'] = ['#markup' => $flag->getShortText($action)];
         $build['#label_attributes']->setAttribute('data-selector', '.' . $selector);
         $build['#message'] = [
           '#type' => 'html_tag',

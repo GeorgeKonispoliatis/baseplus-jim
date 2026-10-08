@@ -28,9 +28,9 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
         '38a4a83ee9437fa4c0c7a481bbf0d2a0' => __DIR__ . '/../..' . '/core/includes/guzzle_file_cookie_jar_shim.php',
         '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
+        '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '61ba3e92ef91a7a0f1cc260ebd9290e4' => __DIR__ . '/..' . '/openai-php/client/src/OpenAI.php',
-        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
     );
@@ -42,9 +42,17 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
             'phootwork\\lang\\' => 15,
             'phootwork\\collection\\' => 21,
         ),
+        'm' =>
+        array (
+            'mglaman\\PHPStanDrupal\\' => 22,
+        ),
         'e' =>
         array (
             'enshrined\\svgSanitize\\' => 22,
+        ),
+        'd' =>
+        array (
+            'dekor\\' => 6,
         ),
         'c' =>
         array (
@@ -60,7 +68,6 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
             'Symfony\\Polyfill\\Php83\\' => 23,
             'Symfony\\Polyfill\\Php81\\' => 23,
             'Symfony\\Polyfill\\Php80\\' => 23,
-            'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
@@ -69,7 +76,6 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Contracts\\Service\\' => 26,
-            'Symfony\\Contracts\\HttpClient\\' => 29,
             'Symfony\\Contracts\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\VarExporter\\' => 30,
@@ -79,12 +85,10 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
             'Symfony\\Component\\Serializer\\' => 29,
             'Symfony\\Component\\Routing\\' => 26,
             'Symfony\\Component\\Process\\' => 26,
-            'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\Mailer\\' => 25,
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
-            'Symfony\\Component\\HttpClient\\' => 29,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\EventDispatcher\\' => 34,
@@ -108,15 +112,11 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
             'Psr\\Container\\' => 14,
             'PhpParser\\' => 10,
             'Peast\\' => 6,
+            'PHPStan\\' => 8,
         ),
         'O' =>
         array (
             'OpenAI\\' => 7,
-            'OneSignal\\' => 10,
-        ),
-        'N' =>
-        array (
-            'Nyholm\\Psr7\\' => 12,
         ),
         'M' =>
         array (
@@ -200,9 +200,17 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
         array (
             0 => __DIR__ . '/..' . '/phootwork/collection',
         ),
+        'mglaman\\PHPStanDrupal\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/mglaman/phpstan-drupal/src',
+        ),
         'enshrined\\svgSanitize\\' =>
         array (
             0 => __DIR__ . '/..' . '/enshrined/svg-sanitize/src',
+        ),
+        'dekor\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/dekor/php-array-table/src',
         ),
         'cweagans\\Composer\\' =>
         array (
@@ -227,10 +235,6 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
         'Symfony\\Polyfill\\Php80\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
-        ),
-        'Symfony\\Polyfill\\Php73\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php73',
         ),
         'Symfony\\Polyfill\\Mbstring\\' =>
         array (
@@ -263,10 +267,6 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
         'Symfony\\Contracts\\Service\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/service-contracts',
-        ),
-        'Symfony\\Contracts\\HttpClient\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/symfony/http-client-contracts',
         ),
         'Symfony\\Contracts\\EventDispatcher\\' =>
         array (
@@ -304,10 +304,6 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
         ),
-        'Symfony\\Component\\OptionsResolver\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/symfony/options-resolver',
-        ),
         'Symfony\\Component\\Mime\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/mime',
@@ -323,10 +319,6 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
         'Symfony\\Component\\HttpFoundation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
-        ),
-        'Symfony\\Component\\HttpClient\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/symfony/http-client',
         ),
         'Symfony\\Component\\Finder\\' =>
         array (
@@ -397,17 +389,13 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
         array (
             0 => __DIR__ . '/..' . '/mck89/peast/lib/Peast',
         ),
+        'PHPStan\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/phpstan/phpstan-deprecation-rules/src',
+        ),
         'OpenAI\\' =>
         array (
             0 => __DIR__ . '/..' . '/openai-php/client/src',
-        ),
-        'OneSignal\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/norkunas/onesignal-php-api/src',
-        ),
-        'Nyholm\\Psr7\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/nyholm/psr7/src',
         ),
         'Masterminds\\' =>
         array (
@@ -647,7 +635,6 @@ class ComposerStaticInit255db3b9bbc793df2b52fb80e91f5292
         'Drupal\\Core\\DrupalKernelInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DrupalKernelInterface.php',
         'Drupal\\Core\\Installer\\InstallerRedirectTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerRedirectTrait.php',
         'Drupal\\Core\\Site\\Settings' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Site/Settings.php',
-        'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'OS_Guess' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/OS/Guess.php',
         'Override' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/Override.php',
